@@ -1,13 +1,16 @@
+let isBreakRevert = false
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message === "continue") {
+        isBreakRevert = true
+        elemTextTranslation(document.body)
+        isBreakRevert = false
+    }
+});
+
 function revertTranslation() {
     let changesList = changes.changesList
-    let isBreakRevert = false
-
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        if (message === "continue") {
-            isBreakRevert = true
-            elemTextTranslation(document.body)
-        }
-    });
+    console.log(changesList)
 
     for (let i = 0; i < changesList.length; i++) {
         if (isBreakRevert) {

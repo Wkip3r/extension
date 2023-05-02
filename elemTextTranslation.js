@@ -5,27 +5,20 @@ const changes = {
 }
 let isBreak = false
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message === "continue") {
-        let body = document.body
-        isBreak = false
-        elemTextTranslation(body)
-    }
-});
-
 while (!isBreak) {
     elemTextTranslation(document.body)
 }
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message === "stop") {
+        isBreak = true
+        revertTranslation()
+        isBreak = false
+    }
+});
+
 function elemTextTranslation(node) {
     const treeWalker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
-
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        if (message === "stop") {
-            isBreak = true
-            revertTranslation()
-        }
-    });
 
     while (treeWalker.nextNode()) {
         if (isBreak) {
