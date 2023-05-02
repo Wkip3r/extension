@@ -22,4 +22,6 @@ function revertTranslation() {
             changesList[i].node.textContent = textNode.substring(0, changesList[i].replaceValues[j]) + SEARCH_VALUE + textNode.substring(changesList[i].replaceValues[j] + 1);
         }
     }
+
+    changes.changesList = []
 }

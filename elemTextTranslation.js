@@ -50,8 +50,9 @@ function elemTextTranslation(node) {
 
                 replaceValues.push(node.textContent.indexOf(SEARCH_VALUE))
                 node.textContent = node.textContent.replace(SEARCH_VALUE, (Math.floor(Math.random() * 9)) + "");
-                changesNode.replaceValues = replaceValues
             }
+
+            changesNode.replaceValues = replaceValues
         }
 
         if (changesNode.node) {
