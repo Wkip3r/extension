@@ -10,7 +10,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 function revertTranslation() {
     let changesList = changes.changesList
-    console.log(changesList)
 
     for (let i = 0; i < changesList.length; i++) {
         if (isBreakRevert) {
